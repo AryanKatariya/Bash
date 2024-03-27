@@ -1,0 +1,33 @@
+And this is a table ma'am.  What in essence it consists of is a horizontal
+rectilinear plane surface maintained by four vertical columnar supports,
+which we call legs.  The tables in this laboratory, ma'am, are as advanced
+in design as one will find anywhere in the world.
+		-- Michael Frayn, "The Tin Men"
+Let me do my TRIBUTE to FISHNET STOCKINGS ...
+Stop searching.  Happiness is right next to you.  Now, if they'd only
+take a bath ...
+You may be recognized soon.  Hide.
+#if _FP_W_TYPE_SIZE < 64
+#error "Only stud muffins allowed, schmuck."
+#endif
+	-- linux/arch/sparc64/quad.c
+"And the next time you consider complaining that running Lucid Emacs
+19.05 via NFS from a remote Linux machine in Paraguay doesn't seem to
+get the background colors right, you'll know who to thank."
+(By Matt Welsh)
+Better living a beggar than buried an emperor.
+Sinners can repent, but stupid is forever.
+The sum of the Universe is zero.
+Also, the Scots are said to have invented golf.  Then they had
+to invent Scotch whiskey to take away the pain and frustration.
+I am having FUN...  I wonder if it's NET FUN or GROSS FUN?
+"It may be that our role on this planet is not to worship God but to
+ create him."
+ -Arthur C. Clarke
+What do you have when you have six lawyers buried up to their necks in sand?
+Not enough sand.
+And... What in the world ever became of Sweet Jane?
+	She's lost her sparkle, you see she isn't the same.
+	Livin' on reds, vitamin C, and cocaine
+	All a friend can say is "Ain't it a shame?"
+		-- The Grateful Dead
