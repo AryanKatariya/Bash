@@ -1,0 +1,7 @@
+#!/bin/bash
+
+read -p "Enter Employees Salary:" s
+
+annual=$[s*12]
+bonus=$(echo $annual*0.25 | bc)
+echo "The Bonus is:${bonus}"

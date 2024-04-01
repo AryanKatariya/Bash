@@ -1,0 +1,22 @@
+#!/bin/bash
+
+read -p "Enter a number:" n1
+read -p "Enter another number:" n2
+
+sum=$(($n1+$n2))
+echo "The SUM:${sum}"
+
+sum1=$((n1+n2))
+echo "The SUM:${sum1}"
+
+sum2=$[n1+n2]
+echo "The SUM:${sum2}"
+
+sum3=$[$n1+$n2]
+echo "The SUM:${sum3}"
+
+let sum4=n1+n2
+echo "The SUM:${sum4}"
+
+sum5=`expr $n1 + $n2`
+echo "The SUM:${sum5}"
