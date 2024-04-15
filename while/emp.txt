@@ -1,0 +1,2 @@
+1:hero:1rupee:10
+2:sunny:20:2
