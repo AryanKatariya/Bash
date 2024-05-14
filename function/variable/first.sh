@@ -18,11 +18,10 @@
 #! /bin/bash
 f1()
 {
- x=20
- echo "x value : $x"
-}
-x=10
-echo "After f1 execution x value: $x"
-f1
-echo "After f1 execution x value: $x"
-
+# x=20
+# echo "x value : $x"
+#}
+#x=10
+#echo "After f1 execution x value: $x"
+#f1
+#echo "After f1 execution x value: $x"
