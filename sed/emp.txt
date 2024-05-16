@@ -1,0 +1,3 @@
+100|sunny|1000|mumbai|admin|female
+300|chinny|3000|delhi|accounting|female
+500|pinny|5000|mumbai|sales|female
