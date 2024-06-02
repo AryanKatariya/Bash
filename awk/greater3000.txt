@@ -1,0 +1,14 @@
+BEGIN{
+ FS=",";
+ c=0;
+}
+NR!=1{
+ if($3>3000)
+ {
+ c=c+1;
+ print $0;
+ }
+}
+END{
+ print "The Total Number of Employees where salary > 3000 :" c
+}

@@ -1,0 +1,13 @@
+BEGIN{
+ FS=",";
+}
+NR!=1{
+if($3>3000)
+{
+ print $2" is very costly employee";
+}
+else
+{
+ print $2" is not costly employee";
+}
+}
