@@ -1,5 +1,5 @@
 # encoding=utf8
-def banner_bash( bannerstring ):
+def banner_bash(bannerstring):
 
     length= len(bannerstring)
     i = 0
