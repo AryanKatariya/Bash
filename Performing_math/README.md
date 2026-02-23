@@ -46,3 +46,8 @@ Net Salary (before incentive)
 Incentive (if applied)
 Final Net Salary
 Even/Odd result
+
+![1.png](./6b0cb5025570d1a1bc3e95f24e7d0bc6.png "1.png")
+![2.png](./a3f4ba870484e1c0ebd3217b1b08a77e.png "2.png")
+
+

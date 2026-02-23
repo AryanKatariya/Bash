@@ -88,89 +88,46 @@
 #fi
 
 
-######	Write a Bash script that processes an employee’s salary with the following rules:
+#read -p "Basic Salary: " basic
+#read -p "Bonus %: " bonus_percent
+#read -p "Tax %: " tax_percent
 
-###### 🔹Step 1 – Take Input
-######	Prompt the user to enter:
-######	Basic Salary (basic)
-######	Bonus Percentage (bonus_percent)
-######	Tax Percentage (tax_percent)
+#bonus=$(expr $(expr $basic \* $bonus_percent) / 100)
+#gross=$(expr $basic + $bonus)
+#tax=$(expr $(expr $gross \* $tax_percent) / 100)
+#net=$(expr $gross - $tax)
 
-###### 🔹Step 2 – Calculate Salary Components
-######	calculate:
-######	Bonus Amount
-######	bonus=(basic×bonus_percent)/100
+#if [ "$net" -gt 50000 ];then
+#	incentive=$(expr $(expr $net \* 5) / 100)
+#	final_net=$(expr $net + $incentive)
+#	echo bonus : $bonus
+#	echo Gross Salary : $gross
+#	echo tax : $tax
+#	echo Net Salary : $net
+#	echo Incentive : $incentive
+#	echo Final Net Salary : $final_net
+#else
+#	final_net=$net
+#	echo bonus : $bonus
+#	echo Gross Salary : $gross
+#	echo tax : $tax
+#	echo Net Salary : $net
+#	echo Final Net Salary : $final_net
+#fi
 
-######	Gross Salary
-######	gross=basic+bonus
+#logic=$(expr $(expr $final_net % 2) = 0)
+#
+#if [ "$logic" -eq 1 ];then
+#       echo "Net salary is EVEN"
+#else
+#       echo "Net salary is ODD"
+#fi
 
-######	Tax Amount
-######	tax=(gross×tax_percent)/100
-
-######	Net Salary
-######	net=gross−tax
-
-###### 🔹Step 3 – Incentive Rule (New Logic)
-
-######	Now apply this condition:
-
-######	If net > 50000
-######	Calculate 5% incentive on the current net salary
-######	incentive=(net×5)/100
-
-######	Add the incentive to net salary
-######	final_net=net+incentive
-######	Else
-######	final_net = net
-
-###### 🔹Step 4 – Even/Odd Check
-
-######	Check whether final_net is:
-######	EVEN → print "Final Net Salary is EVEN"
-######	ODD → print "Final Net Salary is ODD"
-
-###### 🔹Step 5 – Output
-######	Display:
-######	Bonus
-######	Gross Salary
-######	Tax
-######	Net Salary (before incentive)
-######	Incentive (if applied)
-######	Final Net Salary
-######	Even/Odd result
-
-
-read -p "Basic Salary: " basic
-read -p "Bonus %: " bonus_percent
-read -p "Tax %: " tax_percent
-
-bonus=$(expr $(expr $basic \* $bonus_percent) / 100)
-gross=$(expr $basic + $bonus)
-tax=$(expr $(expr $gross \* $tax_percent) / 100)
-net=$(expr $gross - $tax)
-
-if [ "$net" -gt 50000 ];then
-	incentive=$(expr $(expr $net \* 5) / 100)
-	final_net=$(expr $net + $incentive)
-	echo bonus : $bonus
-	echo Gross Salary : $gross
-	echo tax : $tax
-	echo Net Salary : $net
-	echo Incentive : $incentive
-	echo Final Net Salary : $final_net
-else
-	final_net=$net
-	echo bonus : $bonus
-	echo Gross Salary : $gross
-	echo tax : $tax
-	echo Net Salary : $net
-	echo Final Net Salary : $final_net
-fi
-
-logic=$(expr $(expr $final_net % 2) = 0)
-
-if [ "$logic" -eq 1 ];then
-       echo "Net salary is EVEN"
-else
-       echo "Net salary is ODD"
-fi
+len=$(expr length "Hello World")
+echo $len
+wordSub=$(expr substr "Hello World" 1 5)
+echo $wordSub
+same=$(expr "apple" = "apple")
+echo $same
+differ=$(expr "apple" = "orange")
+echo $differ
