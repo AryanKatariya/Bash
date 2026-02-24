@@ -8,6 +8,7 @@
 | `-le`    | less or equal    |
 
 # Problem 1(divisiblity.sh):
+
 Write a script that:
 Takes a number as input.
 If number is:
@@ -23,6 +24,7 @@ else
 modulus %
 
 # Problem 2(number_compare.sh):
+
 Write a script that:
 Takes three numbers
 Prints:
@@ -32,8 +34,8 @@ Whether all three are equal
 Whether exactly two are equal
 
 # Problem 3(triangle_validator.sh):
-Take three numbers as input.
 
+Take three numbers as input.
 Determine:
 Whether they can form a valid triangle
 If valid, determine the type of triangle
@@ -46,6 +48,7 @@ b + c > a
 All three conditions must be TRUE.
 
 # Problem 4(date_validator.sh):
+
 The script should:
 Take input:
 Day (dd)
