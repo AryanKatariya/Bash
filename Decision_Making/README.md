@@ -96,3 +96,25 @@ Dec, Jan, Feb → Winter
 Mar, Apr, May → Spring
 Jun, Jul, Aug → Summer
 Sep, Oct, Nov → Autumn
+
+# Problem 5(bank_withdrawal_system.sh)
+Banking Withdrawal System
+
+Write a script that:
+Takes:
+Account balance
+Withdrawal amount
+
+Rules:
+If withdrawal ≤ 0 → Invalid amount
+If withdrawal > balance → Insufficient funds
+If withdrawal > 50,000 → Require manager approval
+If withdrawal > 10,000 → Apply 2% transaction fee
+Otherwise normal withdrawal
+
+After processing:
+Print remaining balance
+Print whether account is:
+Low balance (< 1000)
+Healthy
+Premium (> 1,00,000)
