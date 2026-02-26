@@ -131,3 +131,4 @@ same=$(expr "apple" = "apple")
 echo $same
 differ=$(expr "apple" = "orange")
 echo $differ
+exit 555

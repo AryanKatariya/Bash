@@ -1,3 +1,4 @@
+## The test Numeric Comparisons
 | Operator | Meaning          |
 | -------- | ---------------- |
 | `-eq`    | equal            |
@@ -5,7 +6,31 @@
 | `-gt`    | greater than     |
 | `-lt`    | less than        |
 | `-ge`    | greater or equal |
-| `-le`    | less or equal    |
+| `-le`    | less or equal    |	
+## The test String Comparisons
+|  Comparison |  Description |
+|---|---|
+|  str1 = str2  |  Checks if str1 is the same as string str2 |
+|  str1 != str2 |  Checks if str1 is not the same as str2 |
+|  str1 < str2 |  Checks if str1 is less than str2 |
+|       str1 > str2       |  Checks if str1 is greater than str2 |
+|             -n str1            |  Checks if str1 has a length greater than zero |
+|                -z str1                |  Checks if str1 has a length of zero |
+
+## The test File Comparisons
+| **Comparison**    | **Description**                                                                     |
+| ----------------- | ----------------------------------------------------------------------------------- |
+| `-d file`         | Checks if the file exists and is a directory.                                       |
+| `-e file`         | Checks if the file exists.                                                          |
+| `-f file`         | Checks if the file exists and is a regular file (not a directory or symbolic link). |
+| `-r file`         | Checks if the file exists and is readable.                                          |
+| `-s file`         | Checks if the file exists and is not empty (has a size greater than 0).             |
+| `-w file`         | Checks if the file exists and is writable.                                          |
+| `-x file`         | Checks if the file exists and is executable.                                        |
+| `-O file`         | Checks if the file exists and is owned by the current user.                         |
+| `-G file`         | Checks if the file exists and has the same group as the current user.               |
+| `file1 -nt file2` | Checks if `file1` is newer than `file2` (modified time comparison).                 |
+| `file1 -ot file2` | Checks if `file1` is older than `file2` (modified time comparison).                 |
 
 # Problem 1(divisiblity.sh):
 
