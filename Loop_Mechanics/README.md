@@ -52,4 +52,3 @@ The task is to iterate through the /etc/passwd file, process each line, and then
 # Controlling the Loop
 The break command is a simple way to escape a loop in progress.Use the break 
 command to exit any type of loop, including while and until loops.
-
