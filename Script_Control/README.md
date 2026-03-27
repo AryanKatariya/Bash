@@ -11,17 +11,25 @@
 | SIGTSTP    | 18        | Stops or pauses the process, but doesn't terminate |
 | SIGCONT    | 19        | Continues a stopped process                        |
 
+<<<<<<< HEAD
 Interactive Bash Shell:
 ##### SIGINT (Ctrl+C): Bash will stop the current process.
 ##### SIGQUIT: If not explicitly handled, Bash can quit (with a core dump).
 ##### SIGHUP: It will exit if the terminal is closed or the parent process dies.
 ##### SIGTERM: Bash will ignore it unless handled by the user.
+=======
+#### Interactive Bash Shell:
+###### SIGINT (Ctrl+C): Bash will stop the current process.
+###### SIGQUIT: If not explicitly handled, Bash can quit (with a core dump).
+###### SIGHUP: It will exit if the terminal is closed or the parent process dies.
+###### SIGTERM: Bash will ignore it unless handled by the user.
+>>>>>>> 7a4473dc7c40bcafaae6ab801cff3170587c8da4
 
 ### Trapping signals(trapCommand.sh)
 ##### The trap command in bash allows you to catch and handle specific signals in your script. Instead of the shell processing the signal, your script can take control and decide what to do with it.
 
 ##### The format of the trap command is:
-###### trap <commands that will get printed> signals.
+`trap <commands that will get printed> signals`
 
 ##### To remove a set trap. Simply add two dashes (Both the single and double dash work properly) after the trap command and a list of the signals you want to return to default behavior.
 
