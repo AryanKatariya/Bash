@@ -16,7 +16,7 @@
 - name: The function name.
 - commands: The list of commands the function will run.
 
-## 1.Uisng function keyword(usingFunction.sh)
+## 1. Uisng function keyword(usingFunction.sh)
 ### 1.2 The original definition of the func1 function works fi ne, but after the second definition of the func1 function, any subsequent uses of the function use the second definition.
 
 ## 2. Returning a Value
@@ -30,7 +30,7 @@
 
 ### 2.3 Using function output
 
-## 3.Using Variables in Functions
+## 3. Using Variables in Functions
 ### 3.1 Passing parameters to a function(variables.sh)
 #### The function can then retrieve the parameter values using the parameter environment variables.
 
@@ -52,19 +52,16 @@
 ### 4.2 Returning arrays from functions
 ### Passing an array variable from a function back to the shell script.
 
-## Function Recursion(factorial.sh)
-
-## Creating a Library
+## 5. Creating a Library
 ### The bash shell allows to create a library file(myfuncs) for your functions and then reference that single library file in as many scripts as needed(library.sh).
 ### The source command has a shortcut alias, called the dot operator. To source the myfuncs library file in a shell script, use:
 `. ./myfuncs`
 
-## Downloading and installing
-## shtool is a utility for shell scripting that provides a set of helpful tools for writing portable shell scripts.
+## 6. Downloading and installing
+### shtool is a utility for shell scripting that provides a set of helpful tools for writing portable shell scripts.
 `wget ftp://ftp.gnu.org/gnu/shtool/shtool-2.0.8.tar.gz`
 `tar -zxvf shtool-2.0.8.tar.gz`
 
-## Building the library
+### Building the library
 `./confifgure`
 `make`
-
