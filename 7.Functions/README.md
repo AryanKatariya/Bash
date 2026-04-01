@@ -38,28 +38,29 @@
 #### variables2.sh correct way to use the cli arguments inside function.
 
 ### 3.3 Handling variables in a function
-### Global variables are variables that are valid anywhere within the shell script.
-### Any variables that the function uses internally can be declared as local variables.
+#### Global variables are variables that are valid anywhere within the shell script.
+#### Any variables that the function uses internally can be declared as local variables.
 
 ## 4. Array Variables and Functions
 ### 4.1 Passing arrays to functions
-### "${myarray[*]}" : This expands the entire array as a single string, where the elements are joined by the first character of the IFS(Internal Field Separator), which is typically a space.
-### For example, if myarray=(a b c), then "${myarray[*]}" expands to: "a b c" (all elements are joined into a single string).
+#### "${myarray[*]}" : This expands the entire array as a single string, where the elements are joined by the first character of the IFS(Internal Field Separator), which is typically a space.
+#### For example, if myarray=(a b c), then "${myarray[*]}" expands to: "a b c" (all elements are joined into a single string).
 
-### "${myarray[@]}" : This expands each element of the array as a separate quoted string, preserving the individual elements.
-### For example, if myarray=(a b c), then "${myarray[@]}" expands to: "a" "b" "c" (each element is treated as a separate argument).
+#### "${myarray[@]}" : This expands each element of the array as a separate quoted string, preserving the individual elements.
+#### For example, if myarray=(a b c), then "${myarray[@]}" expands to: "a" "b" "c" (each element is treated as a separate argument).
 
 ### 4.2 Returning arrays from functions
-### Passing an array variable from a function back to the shell script.
+#### Passing an array variable from a function back to the shell script.
 
 ## 5. Creating a Library
-### The bash shell allows to create a library file(myfuncs) for your functions and then reference that single library file in as many scripts as needed(library.sh).
-### The source command has a shortcut alias, called the dot operator. To source the myfuncs library file in a shell script, use:
+#### The bash shell allows to create a library file(myfuncs) for your functions and then reference that single library file in as many scripts as needed(library.sh).
+#### The source command has a shortcut alias, called the dot operator. To source the myfuncs library file in a shell script, use:
 `. ./myfuncs`
 
 ## 6. Downloading and installing
 ### shtool is a utility for shell scripting that provides a set of helpful tools for writing portable shell scripts.
 `wget ftp://ftp.gnu.org/gnu/shtool/shtool-2.0.8.tar.gz`
+
 `tar -zxvf shtool-2.0.8.tar.gz`
 
 ### Building the library
