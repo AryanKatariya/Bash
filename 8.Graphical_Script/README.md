@@ -123,3 +123,64 @@
 | `--trim`                   | Removes leading spaces and newline characters from dialog text.                                                  |
 | `--visit-items`            | Modifies the tab stops in the dialog window to include the list of items.                                        |
 | `--yes-label`              | Specifies an alternative label for the Yes button.                                                               |
+
+## Using the dialog command in a script(puttingAll.sh)
+
+## The KDE environment
+### The KDE graphical environment includes the kdialog package by default.
+
+### Command to check Desktop Environment
+`echo $XDG_CURRENT_DESKTOP`
+
+### The following is the format of the kdialog command:
+`kdialog display-options window-options arguments`
+
+
+| **Option**                            | **Description**                                                                         |
+| ------------------------------------- | --------------------------------------------------------------------------------------- |
+| `--checklist title [tag item status]` | A checklist menu, with status specifying if the item is checked or not.                 |
+| `--error text`                        | Displays an error message box with the specified text.                                  |
+| `--inputbox text [init]`              | Displays an input textbox where you can specify a default value using the `init` value. |
+| `--menu title [tag item]`             | Displays a menu selection box with a title and a list of items identified by a tag.     |
+| `--msgbox text`                       | Displays a simple message box with specified text.                                      |
+| `--password text`                     | Displays a password input textbox where the input is hidden.                            |
+| `--radiolist title [tag item status]` | Displays a radiolist menu, with status specifying if the item is selected or not.       |
+| `--separate-output`                   | Returns items on separate lines for checklist and radiolist menus.                      |
+| `--sorry text`                        | Displays a "Sorry" message box with the specified text.                                 |
+| `--textbox file [width] [height]`     | Displays the contents of a file in a textbox, optionally specifying width and height.   |
+| `--title title`                       | Specifies the title for the title bar area of the dialog window.                        |
+| `--warningyesno text`                 | Displays a warning message box with Yes and No buttons.                                 |
+| `--warningcontinuecancel text`        | Displays a warning message box with Continue and Cancel buttons.                        |
+| `--warningyesnocancel text`           | Displays a warning message box with Yes, No, and Cancel buttons.                        |
+| `--yesno text`                        | Displays a question box with Yes and No buttons.                                        |
+| `--yesnocancel text`                  | Displays a question box with Yes, No, and Cancel buttons.                               |
+
+
+### The checklist and radiolist widgets allows to define individual items in the lists and whether they are selected by default:
+`$kdialog --checklist "Items I need" 1 "Toothbrush" on 2 "Toothpaste" off 3 "Hair brush" on 4 "Deodorant" off 5 "Slippers" off`
+
+### The GNOME environment
+The GNOME graphical environment supports two packages that can generate standard windows:
+- gdialog
+- zenity
+  
+| **Option**         | **Description**                                      |
+| ------------------ | ---------------------------------------------------- |
+| `--calendar`       | Displays a full month calendar.                      |
+| `--entry`          | Displays a text entry dialog window.                 |
+| `--error`          | Displays an error message dialog window.             |
+| `--file-selection` | Displays a full pathname and filename dialog window. |
+| `--info`           | Displays an informational dialog window.             |
+| `--list`           | Displays a checklist or radiolist dialog window.     |
+| `--notification`   | Displays a notification icon.                        |
+| `--progress`       | Displays a progress bar dialog window.               |
+| `--question`       | Displays a yes/no question dialog window.            |
+| `--scale`          | Displays a scale dialog window.                      |
+| `--text-info`      | Displays a textbox containing text.                  |
+| `--warning`        | Displays a warning dialog window.                    |
+
+`zenity --calendar`
+selected date from the calendar is returns the value to STDOUT.
+
+`zenity --file-selection`
+Use the dialog window to browse to any directory location on the system
