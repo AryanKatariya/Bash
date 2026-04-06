@@ -126,7 +126,9 @@
 
 ## Using the dialog command in a script(puttingAll.sh)
 
-## The KDE environment
+## Getting Graphic
+
+### **The KDE environment**
 ### The KDE graphical environment includes the kdialog package by default.
 
 ### Command to check Desktop Environment
@@ -159,7 +161,7 @@
 ### The checklist and radiolist widgets allows to define individual items in the lists and whether they are selected by default:
 `$kdialog --checklist "Items I need" 1 "Toothbrush" on 2 "Toothpaste" off 3 "Hair brush" on 4 "Deodorant" off 5 "Slippers" off`
 
-### The GNOME environment
+### **The GNOME environment**
 The GNOME graphical environment supports two packages that can generate standard windows:
 - gdialog
 - zenity
