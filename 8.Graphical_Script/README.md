@@ -24,54 +24,54 @@
 | `yesno`        | Provides a simple message with Yes and No buttons                       |
 
 `dialog --widget parameters`
-### where widget is the widget name as seen in above table, and parameters defines the size of the widget window and any text required for the widget.
+where widget is the widget name as seen in above table, and parameters defines the size of the widget window and any text required for the widget.
 
 `dialog --inputbox "Enter your age:" 10 20 2>age.txt`
-### This command redirects the text entered in the textbox to the age.txt file.
+This command redirects the text entered in the textbox to the age.txt file.
 
-## The msgbox widget
-### The msgbox widget is the most common type of dialog box. It displays a simple message in a window and waits for the user to click an OK button before disappearing.
+### The msgbox widget
+The msgbox widget is the most common type of dialog box. It displays a simple message in a window and waits for the user to click an OK button before disappearing.
 
 `dialog --msgbox text height width`
 
 ` $ dialog --title Testing --msgbox "This is a test" 10 20`
-### --title parameter : For title of the messagebox
+--title parameter : For title of the messagebox
 
-## The yesno widget
-### The yesno widget allows the user to answer a yes/no question displayed in the window.
+### The yesno widget
+The yesno widget allows the user to answer a yes/no question displayed in the window.
 
 `dialog --title "Please answer" --yesno "R U ALIVE......?" 10 20`
-### Result of echo $? is 0 for yes and 1 for no
+Result of echo $? is 0 for yes and 1 for no
 
-## The inputbox widget
-### The inputbox widget provides a simple textbox area for the user to enter a text string.
+### The inputbox widget
+The inputbox widget provides a simple textbox area for the user to enter a text string.
 
 `dialog --inputbox "Enter your age:" 10 20 2>age.txt`
-### Result of echo $? is 0 for OK and 1 for Cancel
+Result of echo $? is 0 for OK and 1 for Cancel
 
-## The textbox widget
-### The textbox widget is a great way to display lots of information in a window.
-### It produces a scrollable window containing the text from a fi le specifi ed in the parameters
+### The textbox widget
+The textbox widget is a great way to display lots of information in a window.
+It produces a scrollable window containing the text from a fi le specifi ed in the parameters
 
 `dialog --textbox /etc/passwd 15 45`
 
 
-## The menu widget
-### The menu widget allows you to create a window version of the text menu
+### The menu widget
+The menu widget allows you to create a window version of the text menu
 
 `dialog --menu "Sys Admin Menu" 20 30 10 1 "Display disk space" 2 "Display users" 3 "Display memory usage" 4 "Exit" 2> test.txt`
-### first parameter defines a title for the menu
-### The next two parameters define the height and width of the menu window
-### The third parameter defi nes the number of menu items that appear in the window at one time.
+first parameter defines a title for the menu
+The next two parameters define the height and width of the menu window
+The third parameter defi nes the number of menu items that appear in the window at one time.
 
-## The fselect widget
-###  The fselect widget is extremely handy when working with filenames. Instead of forcing the user to type a filename, use the fselect widget to browse to the file location and select the file
+### The fselect widget
+The fselect widget is extremely handy when working with filenames. Instead of forcing the user to type a filename, use the fselect widget to browse to the file location and select the file
 
 `dialog --title "Select a file" --fselect $HOME/ 10 50 2>file.txt`
-### The first parameter after the fselect option is the starting folder location used in the window.
-### The fselect widget window consists of a directory listing on the left side, a file listing on the right side that shows all the files in the selected directory, and a simple textbox that contains the currently selected file or directory.
+The first parameter after the fselect option is the starting folder location used in the window.
+The fselect widget window consists of a directory listing on the left side, a file listing on the right side that shows all the files in the selected directory, and a simple textbox that contains the currently selected file or directory.
 
-## The dialog options
+### The dialog options
 | **Option**                 | **Description**                                                                                                  |
 | -------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `--add-widget`             | Proceeds to the next dialog unless Esc or the Cancel button has been pressed.                                    |
@@ -129,12 +129,12 @@
 ## Getting Graphic
 
 ### **The KDE environment**
-### The KDE graphical environment includes the kdialog package by default.
+The KDE graphical environment includes the kdialog package by default.
 
-### Command to check Desktop Environment
+Command to check Desktop Environment
 `echo $XDG_CURRENT_DESKTOP`
 
-### The following is the format of the kdialog command:
+The following is the format of the kdialog command:
 `kdialog display-options window-options arguments`
 
 
