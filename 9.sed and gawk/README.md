@@ -48,6 +48,18 @@ This is the second trial of the test script.
 $
 ```
 
+```
+cat data5.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+This is line number 1 again.
+This is text you want to keep.
+This is the last line in the file.
+This is line number 5.
+
+```
 `s/pattern/replacement/flags`
 
 - A number, indicating the pattern occurrence for which new text should be substituted.
@@ -85,7 +97,7 @@ This is a trial line.
 $
 ```
 
-### **e**
+### **-e**
 
 #### Using multiple editor commands in the command line
 
@@ -108,7 +120,7 @@ The quick green elephant jumps over the lazy cat.
 $
 ```
 
-### **f**
+### **-f**
 
 #### Reading editor commands from a file
 To run a lots of sed commands store them in a separate file. Use the -f option to specify the file in the sed command
@@ -127,7 +139,276 @@ The quick green elephant jumps over the lazy cat.
 The quick green elephant jumps over the lazy cat.
 $
 ```
+## **Using addresses**
 
+There are two forms of line addressing in the sed editor:
+- A numeric range of lines
+- A text pattern that fi lters out a line
 
+```
+$ sed '2s/dog/cat/' data1.txt
+The quick brown fox jumps over the lazy dog
+The quick brown fox jumps over the lazy cat
+The quick brown fox jumps over the lazy dog
+The quick brown fox jumps over the lazy dog
+$
 
+# The sed editor modified the text only in line two per the address specified.3
 
+$ sed '2,3s/dog/cat/' data1.txt
+The quick brown fox jumps over the lazy dog
+The quick brown fox jumps over the lazy cat
+The quick brown fox jumps over the lazy cat
+The quick brown fox jumps over the lazy dog
+$
+
+$ sed '2,$s/dog/cat/' data1.txt
+The quick brown fox jumps over the lazy dog
+The quick brown fox jumps over the lazy cat
+The quick brown fox jumps over the lazy cat
+The quick brown fox jumps over the lazy cat
+$
+To apply a command to a group of lines starting at some point within the text,but continuing to the end of the text,use the special address, the dollar sign.
+
+```
+## **Using text pattern filters**
+The sed editor allows you to specify a text pattern that it uses to fi lter lines for the command.
+
+`/pattern/command`
+
+For example,to change the default shell for only the user Samantha.
+
+```
+$ grep Samantha /etc/passwd
+Samantha:x:502:502::/home/Samantha:/bin/bash
+
+$ sed '/Samantha/s/bash/csh/' /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+bin:x:1:1:bin:/bin:/sbin/nologin
+[...]
+Christine:x:501:501:Christine B:/home/Christine:/bin/bash
+Samantha:x:502:502::/home/Samantha:/bin/csh
+Timothy:x:503:503::/home/Timothy:/bin/bash
+$
+```
+## **Grouping commands**
+
+```
+$ sed '2{
+> s/fox/elephant/
+> s/dog/cat/
+> }' data1.txt
+The quick brown fox jumps over the lazy dog.
+The quick brown elephant jumps over the lazy cat.
+The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+$
+
+$ sed '3,${
+> s/brown/green/
+> s/lazy/active/
+> }' data1.txt
+The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+The quick green fox jumps over the active dog.
+The quick green fox jumps over the active dog.
+$
+```
+## **Deleting lines**
+```
+$ sed '3d' data6.txt
+This is line number 1.
+This is line number 2.
+This is line number 4.
+$
+
+# or by a specifi c range of lines:
+$ sed '2,3d' data6.txt
+This is line number 1.
+This is line number 4.
+$
+
+# or by using the special end-of-file character:
+$ sed '3,$d' data6.txt
+This is line number 1.
+This is line number 2.
+$
+
+# The pattern-matching feature of the sed editor also applies to the delete command:
+$ sed '/number 1/d' data6.txt
+This is line number 2.
+This is line number 3.
+This is line number 4.
+$
+# The sed editor removes the line containing text that matches the pattern you specify.
+```
+
+```
+
+# The first pattern you specify “turns on” the line deletion, and the second pattern “turns off” the line deletion.
+
+$ sed '/1/,/3/d' data4.txt
+This is line number 4.
+$
+
+$ cat data5.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+This is line number 1 again.
+This is text you want to keep.
+This is the last line in the file.
+$
+
+# The second occurrence of a line with the number 1 in it triggered the delete command again, deleting the rest of the lines in the data stream, because the stop pattern wasn't recognized.
+
+$ sed '/1/,/5/d' data5.txt
+$
+# Of course, the other obvious problem occurs if you specify a stop pattern that never appears in the text:
+```
+
+## **Inserting and appending text**
+- The insert command (i) adds a new line before the specified line.
+- The append command (a) adds a new line after the specified line.
+
+```
+sed '[address]command\
+new line'
+```
+```
+$ echo "Test Line 2" | sed 'i\Test Line 1'
+Test Line 1
+Test Line 2
+$
+```
+
+when you use the append command, the text appears after the data stream text
+
+```
+$ echo "Test Line 2" | sed 'a\Test Line 1'
+Test Line 2
+Test Line 1
+$
+```
+Insert before a specific line number (line 3)
+```
+$ sed '3i\
+> This is an inserted line.' data6.txt
+This is line number 1.
+This is line number 2.
+This is an inserted line.
+This is line number 3.
+This is line number 4.
+```
+
+Append after a specific line number (line 3)
+```
+$ sed '3a\
+> This is an appended line.' data6.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is an appended line.
+This is line number 4.
+```
+
+## **Changing lines**
+The change command allows you to change the contents of an entire line of text in the data stream.
+```
+cat data5.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+This is line number 1 again.
+This is text you want to keep.
+This is the last line in the file.
+This is line number 5.
+
+$ sed '3c\This is a changed line of text.' data5.txt
+This is line number 1.
+This is line number 2.
+This is a changed line of text.
+This is line number 4.
+$
+```
+
+## **Transforming characters**
+The transform command (y) is the only sed editor command that operates on a single character.
+
+`[address]y/inchars/outchars/`
+
+The first character in inchars is converted to the first character in outchars. The second character in inchars is converted to the second character in outchars.
+
+```
+$ cat data6.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+This is line number 1 again.
+This is yet another line.
+This is the last line in the file.
+$
+```
+
+## **Printing revisited**
+
+### *Printing lines*
+
+Three commands that can be used to print information from the data stream:
+- The p command to print a text line
+- The equal sign (=) command to print line numbers
+- The l (lowercase L) command to list a line
+
+The most common use for the print command is printing lines that contain matching text from a text pattern:
+
+```
+$ cat data4.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+$
+
+$ sed -n '/number 3/p' data6.txt
+This is line number 3.
+$
+```
+- -n: Suppresses automatic printing of all lines (so we only print lines explicitly matched by a command).
+- /number 3/: Matches any line containing "number 3".
+- p: Tells sed to print the matched lines.
+
+### *Printing line numbers*
+The equal sign command prints the current line number for the line within the data stream.
+
+```
+$ cat data1.txt
+The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+The quick brown fox jumps over the lazy dog.
+$
+
+$ sed '=' data1.txt
+1
+The quick brown fox jumps over the lazy dog.
+2
+The quick brown fox jumps over the lazy dog.
+3
+The quick brown fox jumps over the lazy dog.
+4
+The quick brown fox jumps over the lazy dog.
+$
+
+$ sed -n '/number 4/{=;p}' data4.txt
+4
+This is line number 4.
+$
+
+```
+- -n: Suppresses automatic printing of lines.
+- /number 4/: Matches lines containing "number 4".
+- =: Prints the line number of the match.
+- p: Prints the content of the line.
