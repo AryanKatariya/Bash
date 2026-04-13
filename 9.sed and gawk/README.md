@@ -412,3 +412,82 @@ $
 - /number 4/: Matches lines containing "number 4".
 - =: Prints the line number of the match.
 - p: Prints the content of the line.
+
+### *Listing lines*
+The list command (l) allows you to print both the text and nonprintable characters in a data stream.
+
+```
+$ cat data7.txt
+This    line    contains        tabs.
+$
+
+$ sed -n 'l' data7.txt
+This\tline\tcontains\ttabs.$
+$
+```
+- The tab character locations are shown with the \t nomenclature.
+- The dollar sign at the end of the line indicates the newline character.
+
+## **Using files with sed**
+The substitution command contains flags that allow you to work with files.
+
+### *Writing to a file*
+The w command is used to write lines to a file.
+
+`[address]w filename`
+
+```
+$ sed '1,2w test.txt' data6.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+$
+
+$ cat test.txt
+This is line number 1.
+This is line number 2.
+$
+```
+
+To not display the output on STDOUT,use the -n option for the sed command.
+```
+$ cat data11.txt
+Blum, R       Browncoat
+McGuiness, A  Alliance
+Bresnahan, C  Browncoat
+Harken, C     Alliance
+$
+
+$ sed -n '/Browncoat/w Browncoats.txt' data11.txt
+$
+$ cat Browncoats.txt
+Blum, R       Browncoat
+Bresnahan, C  Browncoat
+$
+```
+
+### *Reading data from a file*
+The read command (r) allows you to insert data contained in a separate file.
+
+`[address]r filename`
+
+```
+cat data9.txt
+This is an added line.
+This is the second added line.
+
+cat data4.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is line number 4.
+
+sed '3r data9.txt' data4.txt
+This is line number 1.
+This is line number 2.
+This is line number 3.
+This is an added line.
+This is the second added line.
+This is line number 4.
+```
