@@ -1,0 +1,10 @@
+Q1 Sales: $120,000
+Q2 Sales: $135,000
+Q3 Sales: $98,000
+Q4 Sales: $160,000
+Total Annual Sales: $513,000
+Top Region: North America
+Top Product: Enterprise License
+Customer Churn Rate: 4.2%
+New Customers Acquired: 318
+Net Profit Margin: 22.5%

@@ -153,7 +153,7 @@ The quick brown fox jumps over the lazy dog
 The quick brown fox jumps over the lazy dog
 $
 
-# The sed editor modified the text only in line two per the address specified.3
+# The sed editor modified the text only in line two per the address specified.
 
 $ sed '2,3s/dog/cat/' data1.txt
 The quick brown fox jumps over the lazy dog
@@ -351,6 +351,16 @@ This is line number 1 again.
 This is yet another line.
 This is the last line in the file.
 $
+
+$ sed 'y/123/789/' data6.txt
+This is line number 7.
+This is line number 8.
+This is line number 9.
+This is line number 4.
+This is line number 7 again.
+This is yet another line.
+This is the last line in the file.
+$
 ```
 
 ## **Printing revisited**
@@ -491,3 +501,65 @@ This is an added line.
 This is the second added line.
 This is line number 4.
 ```
+# Exercises
+
+## 1
+Basic Substitution Practice You have a file config.txt containing multiple lines with the word production. Replace every occurrence of production with staging throughout the file (not just the first per line), and save the changed lines to a separate file called staging_lines.txt — without displaying output on screen.
+
+`sed -n 's/production/staging/gw staging_lines.txt' config.txt`
+
+## 2
+You have a log file server.log. Delete all lines from the first occurrence of ERROR through the first occurrence of RESOLVED. Then, for all lines from line 5 onward, replace WARN with WARNING.
+
+`sed -e '/ERROR/,/RESOLVED/d' -e '5,$s/WARN/WARNING/' server.log`
+
+- /ERROR/,/RESOLVED/ — a range address using two text patterns. It tells sed: "start matching from the line containing ERROR, stop at the line containing RESOLVED"
+- d — delete every line in that range
+- 5,$ — a numeric range address: from line 5 to the end of file ($)
+- s/WARN/WARNING/ — substitute WARN with WARNING
+
+## 3
+Write a .sed script file that does all of the following to employees.txt:
+
+Replaces Manager with Lead
+Deletes any line containing Intern
+Appends the line -- End of Department -- after the last line
+
+Run it using the -f flag.
+
+`s/Manager/Lead/`
+
+- Simple substitution, no address — applies to every line
+
+`/Intern/d`
+
+- Pattern filter /Intern/ targets any line containing that word
+
+`$a\-- End of Department --`
+
+- $ — address meaning the last line of the file
+- a\ — append command, adds text after the addressed line
+
+## 4
+Insert a Header and Footer
+Given a file report.txt, use sed to:
+
+Insert === REPORT START === before line 1
+Append === REPORT END === after the last line
+
+Do this in a single sed command using -e.
+
+`sed -e '1i\=== REPORT START ===' -e '$a\=== REPORT END ===' `
+
+## 5
+From passwd, extract only the lines belonging to users whose shell is /bin/bash, print their line numbers alongside the lines, and write only those lines to bash_users.txt — all in one sed command.
+
+## 6
+In a file grades.txt, for only the lines containing the word PASS, convert all lowercase vowels (aeiou) to their uppercase equivalents using the transform command.
+
+`sed '/PASS/y/aeiou/AEIOU/' grades.txt`
+
+## 7
+You have a template file email_template.txt with a placeholder line that says INSERT_DATA_HERE. Use sed's read command (r) to replace that line's position by inserting the contents of data_summary.txt right after it — keeping the placeholder line itself in the output.
+
+`sed '/INSERT_DATA_HERE/r data_summary.txt' email_template.txt`

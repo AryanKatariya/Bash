@@ -1,0 +1,10 @@
+server=production
+env=production
+database_host=production-db.example.com
+app_name=MyApp
+deploy_target=production
+log_level=debug
+production_api_key=abc123xyz
+backup_server=production-backup.example.com
+mode=production
+region=us-east-production

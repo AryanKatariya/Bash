@@ -1,0 +1,8 @@
+server=staging
+env=staging
+database_host=staging-db.example.com
+deploy_target=staging
+staging_api_key=abc123xyz
+backup_server=staging-backup.example.com
+mode=staging
+region=us-east-staging

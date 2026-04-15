@@ -1,0 +1,5 @@
+/\/bin\/bash/{
+=
+p
+w bash_users.txt
+}

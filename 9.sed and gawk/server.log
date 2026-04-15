@@ -1,0 +1,20 @@
+[INFO] Server started successfully on port 8080
+[INFO] Database connection established
+[WARN] Memory usage above 70% threshold
+[INFO] Request received from 192.168.1.10
+[WARN] Response time exceeded 500ms
+[INFO] Cache miss for key: user_session_42
+[ERROR] Failed to connect to payment gateway: timeout
+[WARN] Retrying connection attempt 1 of 3
+[ERROR] Retrying connection attempt 2 of 3 failed
+[INFO] Switching to fallback payment processor
+[WARN] Fallback processor responding slowly
+[INFO] Transaction completed via fallback
+[RESOLVED] Payment gateway connection restored
+[INFO] Resumed primary payment gateway
+[WARN] Disk usage at 85% on /var/log
+[INFO] Log rotation triggered
+[WARN] High CPU usage detected: 92%
+[INFO] Auto-scaling initiated
+[INFO] New instance spun up successfully
+[WARN] Old instance still draining connections

@@ -1,0 +1,5 @@
+Total Sales     : $513,000
+New Customers   : 318
+Churn Rate      : 4.2%
+Top Region      : North America
+Net Profit      : 22.5%
