@@ -382,3 +382,228 @@ $ echo "baakeeet" | sed -n '/b[ae]*t/p'
 ```
 
 ## **Extended Regular Expressions**
+The core of the issue is that sed, by default, uses Basic Regular Expressions (BRE), while gawk uses Extended Regular Expressions (ERE).
+
+The BRE vs. ERE Divide
+The most immediate difference is how special characters are treated.
+sed (Basic RE): Treats characters like |, +, and ? as literal text unless they are escaped with a backslash (e.g., \+).\
+gawk (Extended RE): Treats these as meta-characters by default. You don't need to escape them to trigger their special powers.
+
+### ***The question mark***
+The question mark indicates that the preceding character can appear zero or one time, but thats all. It doesnt match repeating occurrences of the character:
+
+```
+$ echo "bt" | gawk '/be?t/{print $0}'
+bt
+$ echo "bet" | gawk '/be?t/{print $0}'
+bet
+$ echo "beet" | gawk '/be?t/{print $0}'
+$
+$ echo "beeet" | gawk '/be?t/{print $0}'
+$
+```
+
+If the e character doesnt appear in the text, or as long as it appears only once in the text, the pattern matches.
+
+As with the asterisk, user can use the question mark symbol along with a character class
+```
+$ echo "bt" | gawk '/b[ae]?t/{print $0}'
+bt
+$ echo "bat" | gawk '/b[ae]?t/{print $0}'
+bat
+$ echo "bot" | gawk '/b[ae]?t/{print $0}'
+$
+$ echo "bet" | gawk '/b[ae]?t/{print $0}'
+bet
+$ echo "baet" | gawk '/b[ae]?t/{print $0}'
+$
+$ echo "beat" | gawk '/b[ae]?t/{print $0}'
+$
+$ echo "beet" | gawk '/b[ae]?t/{print $0}'
+$
+```
+
+If zero or one character from the character class appears, the pattern match passes.However, if both characters appear, or if one of the characters appears twice, the pattern match fails.
+
+### ***The plus sign***
+The plus sign is another pattern symbol thats similar to the asterisk, but with a different twist than the question mark.
+
+The plus sign indicates that the preceding character can appear one or more times, but must be present at least once. The pattern doesnt match if the character is not present:
+
+```
+$ echo "beeet" | gawk '/be+t/{print $0}'
+beeet
+$ echo "beet" | gawk '/be+t/{print $0}'
+beet
+$ echo "bet" | gawk '/be+t/{print $0}'
+bet
+$ echo "bt" | gawk '/be+t/{print $0}'
+$
+```
+If the e character is not present, the pattern match fails.
+
+The plus sign also works with character classes, the same way as the asterisk and question mark do:
+
+```
+$ echo "bt" | gawk '/b[ae]+t/{print $0}'
+$
+$ echo "bat" | gawk '/b[ae]+t/{print $0}'
+bat
+$ echo "bet" | gawk '/b[ae]+t/{print $0}'
+bet
+$ echo "beat" | gawk '/b[ae]+t/{print $0}'
+beat
+$ echo "beet" | gawk '/b[ae]+t/{print $0}'
+beet
+$ echo "beeat" | gawk '/b[ae]+t/{print $0}'
+beeat
+$
+```
+## **Using braces**
+Curly braces are available in ERE to allow you to specify a limit on a repeatable regular expression.
+
+This is often referred to as an interval.Interval can be expressed in two formats:
+- m: The regular expression appears exactly m times.
+- m,n: The regular expression appears at least m times, but no more than n times.
+
+```
+$ echo "bt" | gawk --re-interval '/be{1}t/{print $0}'
+$
+$ echo "bet" | gawk --re-interval '/be{1}t/{print $0}'
+bet
+$ echo "beet" | gawk --re-interval '/be{1}t/{print $0}'
+$
+```
+
+Often, specifying the lower and upper limit comes in handy:
+
+```
+$ echo "bt" | gawk --re-interval '/be{1,2}t/{print $0}'
+$
+$ echo "bet" | gawk --re-interval '/be{1,2}t/{print $0}'
+bet
+$ echo "beet" | gawk --re-interval '/be{1,2}t/{print $0}'
+beet
+$ echo "beeet" | gawk --re-interval '/be{1,2}t/{print $0}'
+$
+```
+
+The interval pattern match also applies to character classes:
+
+```
+$ echo "bt" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+$
+$ echo "bat" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+bat
+$ echo "bet" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+bet
+$ echo "beat" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+beat
+$ echo "beet" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+beet
+$ echo "beeat" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+$
+$ echo "baeet" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+$
+$ echo "baeaet" | gawk --re-interval '/b[ae]{1,2}t/{print $0}'
+$
+```
+## **The pipe symbol**
+The pipe symbol allows users to specify two or more patterns that the regular expression engine uses in a logical OR formula when examining the data stream.
+
+```
+$ echo "The cat is asleep" | gawk '/cat|dog/{print $0}'
+The cat is asleep
+$ echo "The dog is asleep" | gawk '/cat|dog/{print $0}'
+The dog is asleep
+$ echo "The sheep is asleep" | gawk '/cat|dog/{print $0}'
+$
+$ echo "He has a hat." | gawk '/[ch]at|dog/{print $0}'
+He has a hat.
+$
+```
+
+## **Grouping expressions**
+Regular expression patterns can also be grouped by using parentheses. When you group a regular expression pattern, the group is treated like a standard character.
+
+```
+$ echo "Sat" | gawk '/Sat(urday)?/{print $0}'
+Sat
+$ echo "Saturday" | gawk '/Sat(urday)?/{print $0}'
+Saturday
+$
+```
+The grouping of the “urday” ending along with the question mark allows the pattern to match either the full day name Saturday or the abbreviated name Sat.
+
+# Regular Expressions in Action
+
+## **Counting directory files**
+Shell script that counts the executable files that are present in the directories defined in PATH environment variable.
+
+## **Validating a phone number**
+Often, regular expressions are used to validate data to ensure that data is in the correct format for a script.
+
+Validating a list of phone numbers that customers have entered into an online form. The phone numbers can be formatted in one of the following ways:
+
+(123)456-7890
+
+(123) 456-7890
+
+123-456-7890
+
+123.456.7890
+
+Script that will correctly validate these phone numbers.
+
+`gawk --re-interval '/^\(?[2-9][0-9]{2}\)?[ |\-|\.]?[0-9]{3}[ |\-|\.]?[0-9]{4}/{print $0}'`
+- *^* :
+  - Anchors the pattern to the start of the line.
+
+- *\\(?* :
+    - Optionally matches an opening parenthesis (. The ? means it is optional.
+
+- *[2-9][0-9]{2}* :
+  - This matches a three-digit number where:The first digit is a number between 2 and 9 (to avoid invalid area codes starting with 0 or 1).
+  - The next two digits are any digits between 0 and 9.
+
+- *\\)?* :
+  - Optionally matches a closing parenthesis ).
+  
+- *( |-|\. )* :
+  - To match spaces, hyphens, or periods which is optional due to ?.
+
+- *[0-9]{3}* :
+  - Matches exactly three digits, which represents the first part of the local number.
+
+- *( |-|\.)* :
+  - Matches a space, hyphen, or period, which are common separators in phone numbers.
+  
+- *[0-9]{4}* :
+  - Matches exactly four digits, which represents the second part of the local number.
+
+## **Parsing an e-mail address**
+Writing a regular expression to validate email addresses. The basic form of an email address is as follows:
+
+$$username@hostname$$
+
+*Username*
+    
+    The username part can contain alphanumeric characters and the following special characters:
+
+    Dot (.)
+    Dash (-)
+    Plus sign (+)
+    Underscore (_)
+
+*Hostname*
+    
+    The hostname part consists of one or more domain names and a server name. These domain names must adhere to strict rules:
+
+    Alphanumeric characters
+    Dot (.)
+    Underscore (_)
+
+The domain and server names are separated by dots, and the server name comes first, followed by subdomains (if any), and finally, the top-level domain name, which should not have a trailing dot.
+
+`gawk --re-interval '/^([a-zA-Z0-9_\-\+]+(?:[a-zA-Z0-9_\-\+\.]*[a-zA-Z0-9_\-\+])?)@([a-zA-Z0-9_\-]+\.[a-zA-Z0-9_\-]+(?:\.[a-zA-Z]{2,})*)$/ { print $0 }'`
+
